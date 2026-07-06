@@ -10,7 +10,7 @@
         <form method="POST">
             <div>
                 <label>First Name</label>
-                <input type="text" class="form-control" name="first_name" value="<%= customer.first_name %>"/>
+                <input type="text" class="form-control" name="first_name" value="<%= customer.first_name %>" />
             </div>
             <div>
                 <label>Last Name</label>
@@ -18,17 +18,13 @@
             </div>
             <div>
                 <label>Email</label>
-                <input type="text" class="form-control" name="email" value="<%= customer.email %>"/>
+                <input type="text" class="form-control" name="email" value="<%= customer.email %>" />
             </div>
             <div>
                 <label>Company</label>
-                <select name="company_id" 
-                        class="form-control"
-                        value="<%= customer.company_id %>"
-                >
+                <select name="company_id" class="form-control" value="<%= customer.company_id %>">
                     <% for (let c of companies) { %>
-                        <option value="<%= c.company_id %>"
-                                <%= customer.company_id == c.company_id ? "selected" : "" %>
+                        <option value="<%= c.company_id %>" <%=customer.company_id==c.company_id ? "selected" : "" %>
                             >
                             <%= c.name %>
                         </option>
@@ -41,14 +37,28 @@
                 <label>Employee</label>
                 <select name="employee_id" class="form-control">
                     <% for (let e of employees) { %>
-                        <option value="<%= e.employee_id %>"
-                            <%= customer.employee_id === e.employee_id ? "selected" : ""   %>
-                            
+                        <option value="<%= e.employee_id %>" <%=customer.employee_id===e.employee_id ? "selected" : ""
+                            %>
+
                             >
                             <%= e.first_name %>
                                 <%= e.last_name %>
                         </option>"
 
+                        <% } %>
+                </select>
+            </div>
+
+            <div>
+                <label>Products</label>
+                <select name="products[]" class="form-control" multiple>
+                    <% for (let p of products) { %>
+                        <option value="<%= p.product_id %>"
+                            <%= selectedProducts.includes(p.product_id) ? "selected" : "" %>
+                            
+                            >
+                            <%= p.name %>
+                        </option>
                         <% } %>
                 </select>
             </div>
